@@ -25,7 +25,7 @@ public class ResourceAppraisalAbility extends SimpleAbilityItem {
     private static final int RANGE = 10;
 
     public ResourceAppraisalAbility(Properties properties) {
-        super(properties, () -> BeyonderClassInit.MARAUDER.get(), 9, 15, 60);
+        super(properties, () -> BeyonderClassInit.MARAUDER.get(), 9, 50, 600);
     }
 
     @Override
