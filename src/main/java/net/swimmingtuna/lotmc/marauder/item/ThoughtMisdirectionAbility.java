@@ -23,7 +23,7 @@ public class ThoughtMisdirectionAbility extends SimpleAbilityItem {
     private static final int RANGE = 6;
 
     public ThoughtMisdirectionAbility(Properties properties) {
-        super(properties, () -> BeyonderClassInit.MARAUDER.get(), 8, 50, 400);
+        super(properties, () -> BeyonderClassInit.MARAUDER.get(), 8, 80, 400);
     }
 
     @Override
