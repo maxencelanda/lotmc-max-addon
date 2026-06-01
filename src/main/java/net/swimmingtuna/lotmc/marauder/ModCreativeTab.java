@@ -18,6 +18,7 @@ public class ModCreativeTab {
                     .displayItems((params, output) -> {
                         output.accept(ModItems.RESOURCE_APPRAISAL.get());
                         output.accept(ModItems.THEFT.get());
+                        output.accept(ModItems.THOUGHT_MISDIRECTION.get());
                     })
                     .build());
 
