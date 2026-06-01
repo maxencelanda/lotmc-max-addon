@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import net.swimmingtuna.lotmc.marauder.item.ResourceAppraisalAbility;
 import net.swimmingtuna.lotmc.marauder.item.TheftAbility;
 import net.swimmingtuna.lotmc.marauder.item.ThoughtMisdirectionAbility;
+import net.swimmingtuna.lotmc.marauder.item.MentalDisruptionAbility;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, LotMCMarauder.MOD_ID);
@@ -21,6 +22,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> THOUGHT_MISDIRECTION = ITEMS.register("thought_misdirection",
             () -> new ThoughtMisdirectionAbility(new Item.Properties().stacksTo(1)));
+
+    public static final RegistryObject<Item> MENTAL_DISRUPTION = ITEMS.register("mental_disruption",
+            () -> new MentalDisruptionAbility(new Item.Properties().stacksTo(1)));
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);

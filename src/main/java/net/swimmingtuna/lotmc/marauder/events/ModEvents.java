@@ -92,8 +92,9 @@ public class ModEvents {
             ItemStack appraisalStack = new ItemStack(ModItems.RESOURCE_APPRAISAL.get());
             ItemStack theftStack = new ItemStack(ModItems.THEFT.get());
             ItemStack thoughtStack = new ItemStack(ModItems.THOUGHT_MISDIRECTION.get());
+            ItemStack mentalStack = new ItemStack(ModItems.MENTAL_DISRUPTION.get());
 
-            for (ItemStack abilityItem : new ItemStack[]{appraisalStack, theftStack, thoughtStack}) {
+            for (ItemStack abilityItem : new ItemStack[]{appraisalStack, theftStack, thoughtStack, mentalStack}) {
                 if (abilityItem.isEmpty()) continue;
                 boolean alreadyPresent = false;
                 for (int i = 0; i < container.getContainerSize(); i++) {

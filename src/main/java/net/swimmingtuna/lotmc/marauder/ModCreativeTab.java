@@ -19,6 +19,7 @@ public class ModCreativeTab {
                         output.accept(ModItems.RESOURCE_APPRAISAL.get());
                         output.accept(ModItems.THEFT.get());
                         output.accept(ModItems.THOUGHT_MISDIRECTION.get());
+                        output.accept(ModItems.MENTAL_DISRUPTION.get());
                     })
                     .build());
 
