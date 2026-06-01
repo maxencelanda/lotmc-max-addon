@@ -89,17 +89,25 @@ public class ModEvents {
             containerField.setAccessible(true);
             Container container = (Container) containerField.get(menu);
 
-            ItemStack ourItem = new ItemStack(ModItems.RESOURCE_APPRAISAL.get());
-            if (ourItem.isEmpty()) return;
+            ItemStack appraisalStack = new ItemStack(ModItems.RESOURCE_APPRAISAL.get());
+            ItemStack theftStack = new ItemStack(ModItems.THEFT.get());
 
-            for (int i = 0; i < container.getContainerSize(); i++) {
-                if (ItemStack.isSameItem(container.getItem(i), ourItem)) return;
-            }
+            for (ItemStack abilityItem : new ItemStack[]{appraisalStack, theftStack}) {
+                if (abilityItem.isEmpty()) continue;
+                boolean alreadyPresent = false;
+                for (int i = 0; i < container.getContainerSize(); i++) {
+                    if (ItemStack.isSameItem(container.getItem(i), abilityItem)) {
+                        alreadyPresent = true;
+                        break;
+                    }
+                }
+                if (alreadyPresent) continue;
 
-            for (int i = 0; i < container.getContainerSize(); i++) {
-                if (container.getItem(i).isEmpty()) {
-                    container.setItem(i, ourItem);
-                    break;
+                for (int i = 0; i < container.getContainerSize(); i++) {
+                    if (container.getItem(i).isEmpty()) {
+                        container.setItem(i, abilityItem);
+                        break;
+                    }
                 }
             }
 
@@ -107,7 +115,7 @@ public class ModEvents {
                 menu.broadcastChanges();
             }
 
-            LOGGER.info("Injected RESOURCE_APPRAISAL into /abilities for player {}", player.getName().getString());
+            LOGGER.info("Injected abilities into /abilities for player {}", player.getName().getString());
         } catch (Exception e) {
             LOGGER.error("Failed to inject RESOURCE_APPRAISAL into abilities menu", e);
         }

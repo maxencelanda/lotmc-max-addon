@@ -17,6 +17,7 @@ public class ModCreativeTab {
                     .title(Component.translatable("creativetab.lotmc_marauder"))
                     .displayItems((params, output) -> {
                         output.accept(ModItems.RESOURCE_APPRAISAL.get());
+                        output.accept(ModItems.THEFT.get());
                     })
                     .build());
 
