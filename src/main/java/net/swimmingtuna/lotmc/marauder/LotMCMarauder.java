@@ -6,6 +6,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.swimmingtuna.lotmc.marauder.events.ModEvents;
+import net.swimmingtuna.lotmc.marauder.events.VillagerEvents;
 import org.slf4j.Logger;
 
 @Mod(LotMCMarauder.MOD_ID)
@@ -20,6 +21,7 @@ public class LotMCMarauder {
         ModCreativeTab.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(ModEvents.class);
+        MinecraftForge.EVENT_BUS.register(VillagerEvents.class);
 
         LOGGER.info("LOTMC Marauder Addon initialized!");
     }
