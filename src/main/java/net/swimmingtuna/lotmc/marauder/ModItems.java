@@ -6,10 +6,11 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.swimmingtuna.lotmc.marauder.item.DecryptionAbility;
+import net.swimmingtuna.lotmc.marauder.item.MentalDisruptionAbility;
 import net.swimmingtuna.lotmc.marauder.item.ResourceAppraisalAbility;
 import net.swimmingtuna.lotmc.marauder.item.TheftAbility;
 import net.swimmingtuna.lotmc.marauder.item.ThoughtMisdirectionAbility;
-import net.swimmingtuna.lotmc.marauder.item.MentalDisruptionAbility;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, LotMCMarauder.MOD_ID);
@@ -25,6 +26,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> MENTAL_DISRUPTION = ITEMS.register("mental_disruption",
             () -> new MentalDisruptionAbility(new Item.Properties().stacksTo(1)));
+
+    public static final RegistryObject<Item> DECRYPTION = ITEMS.register("decryption",
+            () -> new DecryptionAbility(new Item.Properties().stacksTo(1)));
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);
