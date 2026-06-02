@@ -35,7 +35,7 @@ public class ThoughtMisdirectionAbility extends SimpleAbilityItem {
 
         if (user.distanceToSqr(target) >= RANGE * RANGE) {
             thief.displayClientMessage(
-                    Component.literal("Target is too far!").withStyle(ChatFormatting.RED),
+                    Component.translatable("message.lotmc_marauder.target_too_far").withStyle(ChatFormatting.RED),
                     false
             );
             return InteractionResult.FAIL;
@@ -58,7 +58,7 @@ public class ThoughtMisdirectionAbility extends SimpleAbilityItem {
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.literal("Disorients a target player by randomly rotating their camera").withStyle(ChatFormatting.GRAY));
-        tooltip.add(Component.literal("Range: " + RANGE + " blocks").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.lotmc_marauder.thought_misdirection.desc").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.lotmc_marauder.thought_misdirection.range", RANGE).withStyle(ChatFormatting.GRAY));
     }
 }

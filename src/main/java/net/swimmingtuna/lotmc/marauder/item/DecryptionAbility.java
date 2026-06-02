@@ -69,14 +69,14 @@ public class DecryptionAbility extends SimpleAbilityItem {
 
         if (revealedCount == 0) {
             user.displayClientMessage(
-                    Component.literal("No hidden players detected nearby.").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("message.lotmc_marauder.no_hidden_players").withStyle(ChatFormatting.GRAY),
                     false
             );
             return InteractionResult.FAIL;
         }
 
         user.displayClientMessage(
-                Component.literal("Decryption successful! Revealed " + revealedCount + " hidden player" + (revealedCount == 1 ? "" : "s") + ".")
+                Component.translatable("message.lotmc_marauder.decryption_success", revealedCount)
                         .withStyle(ChatFormatting.GREEN),
                 false
         );
@@ -89,7 +89,7 @@ public class DecryptionAbility extends SimpleAbilityItem {
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.literal("Scans for hidden players within " + RANGE + " blocks and reveals them").withStyle(ChatFormatting.GRAY));
-        tooltip.add(Component.literal("Removes vanilla invisibility & Spectator psychological invisibility").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.lotmc_marauder.decryption.desc", RANGE).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.lotmc_marauder.decryption.desc2").withStyle(ChatFormatting.GRAY));
     }
 }

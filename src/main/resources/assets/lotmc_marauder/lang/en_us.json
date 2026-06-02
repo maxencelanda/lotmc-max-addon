@@ -4,5 +4,29 @@
   "item.lotmc_marauder.thought_misdirection": "Thought Misdirection",
   "item.lotmc_marauder.mental_disruption": "Mental Disruption",
   "item.lotmc_marauder.decryption": "Decryption",
-  "creativetab.lotmc_marauder": "LOTMC Marauder"
+  "item.lotmc_marauder.prometheus_theft": "Prometheus Theft",
+  "creativetab.lotmc_marauder": "LOTMC Marauder",
+
+  "message.lotmc_marauder.target_too_far": "Target is too far!",
+  "message.lotmc_marauder.not_marauder": "You are not a Marauder!",
+  "message.lotmc_marauder.target_too_powerful": "Target is too powerful to steal from!",
+  "message.lotmc_marauder.nothing_valuable": "Nothing valuable to steal!",
+  "message.lotmc_marauder.not_enough_spirituality": "Not enough spirituality!",
+  "message.lotmc_marauder.no_valuable_resources": "No valuable resources detected nearby.",
+  "message.lotmc_marauder.resource_appraisal.header": "=== Resource Appraisal ===",
+  "message.lotmc_marauder.resource_appraisal.entry": "  %s: %s stacks (%s total)",
+  "message.lotmc_marauder.resource_appraisal.total": "Total items: %s",
+  "message.lotmc_marauder.no_hidden_players": "No hidden players detected nearby.",
+  "message.lotmc_marauder.decryption_success": "Decryption successful! Revealed %s hidden player(s).",
+
+  "tooltip.lotmc_marauder.mental_disruption.desc": "Plays terrifying hallucination sounds in the target's ears",
+  "tooltip.lotmc_marauder.mental_disruption.range": "Range: %s blocks",
+  "tooltip.lotmc_marauder.thought_misdirection.desc": "Disorients a target player by randomly rotating their camera",
+  "tooltip.lotmc_marauder.thought_misdirection.range": "Range: %s blocks",
+  "tooltip.lotmc_marauder.theft.desc": "Steals one material/ingredient from a nearby player's inventory",
+  "tooltip.lotmc_marauder.theft.range": "Range: 2 blocks",
+  "tooltip.lotmc_marauder.resource_appraisal.desc": "Scans nearby players & chests for valuable resources",
+  "tooltip.lotmc_marauder.resource_appraisal.range": "Range: %s blocks",
+  "tooltip.lotmc_marauder.decryption.desc": "Scans for hidden players within %s blocks and reveals them",
+  "tooltip.lotmc_marauder.decryption.desc2": "Removes vanilla invisibility & Spectator psychological invisibility"
 }

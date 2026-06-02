@@ -35,7 +35,7 @@ public class TheftAbility extends SimpleAbilityItem {
         // Distance check: strictly less than 2.0 blocks
         if (thief.distanceToSqr(victim) >= 4.0) {
             thief.displayClientMessage(
-                    Component.literal("Target is too far!").withStyle(ChatFormatting.RED),
+                    Component.translatable("message.lotmc_marauder.target_too_far").withStyle(ChatFormatting.RED),
                     false
             );
             return InteractionResult.FAIL;
@@ -47,7 +47,7 @@ public class TheftAbility extends SimpleAbilityItem {
 
         if (!thiefHolder.currentClassMatches(BeyonderClassInit.MARAUDER)) {
             thief.displayClientMessage(
-                    Component.literal("You are not a Marauder!").withStyle(ChatFormatting.RED),
+                    Component.translatable("message.lotmc_marauder.not_marauder").withStyle(ChatFormatting.RED),
                     false
             );
             return InteractionResult.FAIL;
@@ -58,7 +58,7 @@ public class TheftAbility extends SimpleAbilityItem {
 
         if (victimSequence != -1 && victimSequence <= thiefSequence - 2) {
             thief.displayClientMessage(
-                    Component.literal("Target is too powerful to steal from!").withStyle(ChatFormatting.RED),
+                    Component.translatable("message.lotmc_marauder.target_too_powerful").withStyle(ChatFormatting.RED),
                     false
             );
             return InteractionResult.FAIL;
@@ -69,7 +69,7 @@ public class TheftAbility extends SimpleAbilityItem {
 
         if (validSlots.isEmpty()) {
             thief.displayClientMessage(
-                    Component.literal("Nothing valuable to steal!").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("message.lotmc_marauder.nothing_valuable").withStyle(ChatFormatting.GRAY),
                     false
             );
             return InteractionResult.FAIL;
@@ -78,7 +78,7 @@ public class TheftAbility extends SimpleAbilityItem {
         // Consume spirituality
         if (!thiefHolder.useSpirituality(100)) {
             thief.displayClientMessage(
-                    Component.literal("Not enough spirituality!").withStyle(ChatFormatting.RED),
+                    Component.translatable("message.lotmc_marauder.not_enough_spirituality").withStyle(ChatFormatting.RED),
                     false
             );
             return InteractionResult.FAIL;
@@ -134,7 +134,7 @@ public class TheftAbility extends SimpleAbilityItem {
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.literal("Steals one material/ingredient from a nearby player's inventory").withStyle(ChatFormatting.GRAY));
-        tooltip.add(Component.literal("Range: 2 blocks").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.lotmc_marauder.theft.desc").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.lotmc_marauder.theft.range").withStyle(ChatFormatting.GRAY));
     }
 }

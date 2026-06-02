@@ -106,14 +106,14 @@ public class ResourceAppraisalAbility extends SimpleAbilityItem {
     private void sendResults(Player player, Map<String, ResourceCount> resources) {
         if (resources.isEmpty()) {
             player.displayClientMessage(
-                    Component.literal("No valuable resources detected nearby.").withStyle(ChatFormatting.GRAY),
+                    Component.translatable("message.lotmc_marauder.no_valuable_resources").withStyle(ChatFormatting.GRAY),
                     false
             );
             return;
         }
 
         player.displayClientMessage(
-                Component.literal("=== Resource Appraisal ===").withStyle(ChatFormatting.DARK_PURPLE),
+                Component.translatable("message.lotmc_marauder.resource_appraisal.header").withStyle(ChatFormatting.DARK_PURPLE),
                 false
         );
         long totalValue = 0;
@@ -121,13 +121,14 @@ public class ResourceAppraisalAbility extends SimpleAbilityItem {
             ResourceCount rc = entry.getValue();
             totalValue += rc.total;
             player.displayClientMessage(
-                    Component.literal("  " + entry.getKey() + ": " + rc.count + " stacks (" + rc.total + " total)")
+                    Component.translatable("message.lotmc_marauder.resource_appraisal.entry", entry.getKey(), rc.count, rc.total)
                             .withStyle(ChatFormatting.LIGHT_PURPLE),
                     false
             );
         }
         player.displayClientMessage(
-                Component.literal("Total items: " + totalValue).withStyle(ChatFormatting.DARK_PURPLE),
+                Component.translatable("message.lotmc_marauder.resource_appraisal.total", totalValue)
+                        .withStyle(ChatFormatting.DARK_PURPLE),
                 false
         );
     }
@@ -150,7 +151,7 @@ public class ResourceAppraisalAbility extends SimpleAbilityItem {
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(Component.literal("Scans nearby players & chests for valuable resources").withStyle(ChatFormatting.GRAY));
-        tooltip.add(Component.literal("Range: " + RANGE + " blocks").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.lotmc_marauder.resource_appraisal.desc").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.lotmc_marauder.resource_appraisal.range", RANGE).withStyle(ChatFormatting.GRAY));
     }
 }
