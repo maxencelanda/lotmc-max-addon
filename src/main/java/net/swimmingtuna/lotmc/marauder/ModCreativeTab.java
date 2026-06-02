@@ -20,6 +20,8 @@ public class ModCreativeTab {
                         output.accept(ModItems.THEFT.get());
                         output.accept(ModItems.THOUGHT_MISDIRECTION.get());
                         output.accept(ModItems.MENTAL_DISRUPTION.get());
+                        output.accept(ModItems.DECRYPTION.get());
+                        output.accept(ModItems.PROMETHEUS_THEFT.get());
                     })
                     .build());
 

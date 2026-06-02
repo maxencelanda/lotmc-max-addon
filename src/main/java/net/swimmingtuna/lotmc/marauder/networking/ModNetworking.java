@@ -4,6 +4,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
+import net.swimmingtuna.lotmc.marauder.networking.packet.OpenPrometheusTheftScreenS2C;
+import net.swimmingtuna.lotmc.marauder.networking.packet.PrometheusTheftChoiceC2S;
 import net.swimmingtuna.lotmc.marauder.networking.packet.RotateCameraPacketS2C;
 
 public class ModNetworking {
@@ -21,6 +23,16 @@ public class ModNetworking {
                 .decoder(RotateCameraPacketS2C::new)
                 .encoder(RotateCameraPacketS2C::toBytes)
                 .consumerMainThread(RotateCameraPacketS2C::handle)
+                .add();
+        INSTANCE.messageBuilder(OpenPrometheusTheftScreenS2C.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(OpenPrometheusTheftScreenS2C::new)
+                .encoder(OpenPrometheusTheftScreenS2C::toBytes)
+                .consumerMainThread(OpenPrometheusTheftScreenS2C::handle)
+                .add();
+        INSTANCE.messageBuilder(PrometheusTheftChoiceC2S.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(PrometheusTheftChoiceC2S::new)
+                .encoder(PrometheusTheftChoiceC2S::toBytes)
+                .consumerMainThread(PrometheusTheftChoiceC2S::handle)
                 .add();
     }
 

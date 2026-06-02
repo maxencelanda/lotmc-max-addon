@@ -80,6 +80,12 @@ minecraft {
             property 'forge.enabledGameTestNamespaces', mod_id
         }
 
+        client2 {
+            parent runs.client
+            workingDirectory project.file('run2')
+            args '--username', 'Dev2'
+        }
+
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
             args '--nogui'
@@ -225,6 +231,6 @@ publishing {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
     options.compilerArgs += [
-            "-AoutRefMap=${project.buildDir}/classes/java/main/${mod_id}.refmap.json"
+            "-AoutRefMapFile=${project.buildDir}/classes/java/main/${mod_id}.refmap.json"
     ]
 }

@@ -1,19 +1,26 @@
 package net.swimmingtuna.lotmc.marauder.events;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.swimmingtuna.lotm.capabilities.scribed_abilities.ScribedUtils;
 import net.swimmingtuna.lotm.caps.BeyonderHolder;
 import net.swimmingtuna.lotm.caps.BeyonderHolderAttacher;
 import net.swimmingtuna.lotm.init.BeyonderClassInit;
 import net.swimmingtuna.lotm.util.BeyonderAbilitiesItemMenu;
 import net.swimmingtuna.lotmc.marauder.ModItems;
-import net.swimmingtuna.lotmc.marauder.attributes.PathwayAttributes.MarauderAttributes;
+import net.swimmingtuna.lotmc.marauder.attributes.marauder.MarauderAttributes;
 import org.slf4j.Logger;
 
 import java.lang.reflect.Field;
@@ -67,6 +74,62 @@ public class ModEvents {
                 MarauderAttributes.cleanAll(player);
             }
         }
+
+        handlePrometheusTimers(player);
+    }
+
+    private static void handlePrometheusTimers(Player player) {
+        CompoundTag tag = player.getPersistentData();
+
+        int borrowedTimer = tag.getInt("prometheusBorrowedTimer");
+        if (borrowedTimer > 0) {
+            borrowedTimer--;
+            tag.putInt("prometheusBorrowedTimer", borrowedTimer);
+            if (borrowedTimer <= 0) {
+                String borrowedAbility = tag.getString("prometheusBorrowedAbility");
+                tag.remove("prometheusBorrowedAbility");
+                tag.remove("prometheusBorrowedTimer");
+                tag.remove("prometheusBorrowedFrom");
+                if (!borrowedAbility.isEmpty()) {
+                    Item abilityItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(borrowedAbility));
+                    if (abilityItem != null) {
+                        ScribedUtils.removeAbility(player, abilityItem);
+                        for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
+                            ItemStack stack = player.getInventory().getItem(i);
+                            if (stack.is(abilityItem)) {
+                                stack.shrink(1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                player.sendSystemMessage(Component.literal("Your borrowed ability has expired."));
+            }
+        }
+
+        int stolenTimer = tag.getInt("prometheusStolenTimer");
+        if (stolenTimer > 0) {
+            stolenTimer--;
+            tag.putInt("prometheusStolenTimer", stolenTimer);
+            if (stolenTimer <= 0) {
+                String stolenAbility = tag.getString("prometheusStolenAbility");
+                tag.remove("prometheusStolenAbility");
+                tag.remove("prometheusStolenTimer");
+                tag.remove("prometheusStolenBy");
+                if (!stolenAbility.isEmpty()) {
+                    Item abilityItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation(stolenAbility));
+                    if (abilityItem != null) {
+                        ItemStack returnedStack = new ItemStack(abilityItem);
+                        if (!player.getInventory().add(returnedStack)) {
+                            ItemEntity entity = new ItemEntity(player.level(), player.getX(), player.getY(), player.getZ(), returnedStack);
+                            entity.setPickUpDelay(0);
+                            player.level().addFreshEntity(entity);
+                        }
+                    }
+                }
+                player.sendSystemMessage(Component.literal("Your stolen ability has returned!"));
+            }
+        }
     }
 
     /**
@@ -94,8 +157,9 @@ public class ModEvents {
             ItemStack thoughtStack = new ItemStack(ModItems.THOUGHT_MISDIRECTION.get());
             ItemStack mentalStack = new ItemStack(ModItems.MENTAL_DISRUPTION.get());
             ItemStack decryptionStack = new ItemStack(ModItems.DECRYPTION.get());
+            ItemStack prometheusStack = new ItemStack(ModItems.PROMETHEUS_THEFT.get());
 
-            for (ItemStack abilityItem : new ItemStack[]{appraisalStack, theftStack, thoughtStack, mentalStack, decryptionStack}) {
+            for (ItemStack abilityItem : new ItemStack[]{appraisalStack, theftStack, thoughtStack, mentalStack, decryptionStack, prometheusStack}) {
                 if (abilityItem.isEmpty()) continue;
                 boolean alreadyPresent = false;
                 for (int i = 0; i < container.getContainerSize(); i++) {

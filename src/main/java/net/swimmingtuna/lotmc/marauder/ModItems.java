@@ -8,6 +8,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.swimmingtuna.lotmc.marauder.item.DecryptionAbility;
 import net.swimmingtuna.lotmc.marauder.item.MentalDisruptionAbility;
+import net.swimmingtuna.lotmc.marauder.item.PrometheusTheftAbility;
 import net.swimmingtuna.lotmc.marauder.item.ResourceAppraisalAbility;
 import net.swimmingtuna.lotmc.marauder.item.TheftAbility;
 import net.swimmingtuna.lotmc.marauder.item.ThoughtMisdirectionAbility;
@@ -29,6 +30,8 @@ public class ModItems {
 
     public static final RegistryObject<Item> DECRYPTION = ITEMS.register("decryption",
             () -> new DecryptionAbility(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> PROMETHEUS_THEFT = ITEMS.register("prometheus_theft",
+            () -> new PrometheusTheftAbility(new Item.Properties().stacksTo(1)));
 
     public static void register(IEventBus bus) {
         ITEMS.register(bus);

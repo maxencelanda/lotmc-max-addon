@@ -4,7 +4,10 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "lotmc_marauder.refmap.json",
   "minVersion": "0.8",
-  "mixins": [],
+  "mixins": [
+    "BeyonderUtilMixin",
+    "SimpleAbilityItemMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

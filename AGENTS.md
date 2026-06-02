@@ -20,6 +20,11 @@ Le mod cible et notre addon s'appuient sur les APIs suivantes (Forge 1.20.1). Tu
 Le mod d'origin (LOTMC) est décompilé ici : C:\Projets\Minecraft\lotmc-decompiled\
 Tu peux l'explorer pour avoir certaines informations
 
+### Skills
+
+- code : à utiliser quand tu dois créer une feature ou modifier l'existant. Permet de connaître les standards, conventions et architecture du projet pour maintenir un bon équilibre.
+- lotmc-analysis: à utiliser quand tu dois analyser le code source du mod originel LOTMC. C'est une analyse pré-établie.
+
 ---
 
 ## 🛠️ Stack Technique & Environnement
@@ -74,5 +79,6 @@ Tu dois STRICTEMENT respecter les règles d'architecture suivantes :
 ## 📋 Directives pour les Réponses de l'Agent
 
 * **Pas de code obsolète :** Ne confonds pas les méthodes de la 1.20.1 avec celles des versions antérieures (comme la 1.12, 1.16 ou 1.18). Les noms de méthodes Mojang doivent être exacts.
-* **Génération complète :** Quand tu crées un nouvel Item ou Bloc, fournis également le code d'enregistrement, la classe de l'objet (si spécifique), ainsi que les fichiers JSON associés (le modèle d'item, la texture de base, et le fichier de langue `en_us.json` / `fr_fr.json`).
+* **Génération complète :** Quand tu crées un nouvel Item ou Bloc, fournis également le code d'enregistrement, la classe de l'objet (si spécifique), ainsi que les fichiers JSON associés (le modèle d'item, la texture de base, et le fichier de langue `en_us.json`).
+* **Anglais seulement :** Les fichiers de traduction sont limités à `en_us.json`. Ne génère PAS de fichiers `fr_fr.json` ou d'autres locales.
 * **Modularité :** Garde les classes propres. Sépare bien `ModItems`, `ModBlocks`, `ModMixins` et `ModCreativeModeTabs`.

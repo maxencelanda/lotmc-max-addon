@@ -1,4 +1,4 @@
-package net.swimmingtuna.lotmc.marauder.attributes.PathwayAttributes;
+package net.swimmingtuna.lotmc.marauder.attributes.marauder;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
