@@ -36,3 +36,8 @@ versions
 
 # Files from Forge MDK
 forge*changelog.txt
+
+.opencode/
+AGENTS.md
+REPORT.md
+run2/
